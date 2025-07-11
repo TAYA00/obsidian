@@ -6,6 +6,7 @@ banner_y: "0"
 aliases:
 ---
 ![[chinigraphy-729Y5P6fmfg-unsplash.jpg|30x20]]
+### Script
 ```html
 <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js"></script>
 ```
@@ -210,5 +211,73 @@ it is a shortcut for `v-on:value` and `v-on:input`
 
 # Lesson 31
 - output a full name 
-	- create `outputFullName()` methods funktion
-	- call it in `p` that show result of input `<p>Your Name: {{ outputFullName() }}</p>`
+	- create `outputFullName()` methods function
+	- call it in `p` that show result of input `<p>Your Name: {{ outputFullName() }}</p>` so that we output name with assigned last name
+	- add check with if , so that when it's nothing in input - it show nothing and when yes - output name + last name
+```HTML
+<input type="text" v-model="name">
+<p>Your Name: {{ outputFullName() }}</p>
+
+```
+
+
+```JS
+outputFullName() {
+      if (this.name === '') {
+        return '';
+      }
+      return this.name + ' ' + 'Schwarzenegger';
+    },
+```
+
+> [!NOTE]
+    > BUT with `{{ outputFullName() }}`  this method will be re-executed by Vue, whenever smth changes on a page (for example counter)
+
+Methods should not be used to output dynamically calculated value
+
+#  Lesson 32
+to avoid execution of all methods simultaneously - we use <mark style="background: #FF5582A6;">computed properties</mark>.
+Vue will execute them **ONLY** one of the dependencies changed.
+
+`computed:{}` - inside we define methods
+
+- we write prop that will be functioning as a `data()` prop, so we name it as it will be in data
+	`fullname() {}`
+- inside we place the code that was it our method `outputFullname()`
+	```JS
+	computed: {
+		fullname() {
+	      if (this.name === '') {
+	        return '';
+	      }
+	      return this.name + ' ' + 'Schwarzmüller';
+		}
+	}
+	```
+- we POINT at it and doing it WITHOUT ()
+	```HTML
+	<p>Your Name: {{ fullname }}</p>
+	```
+
+# Lesson 33
+<mark style="background: #FF5582A6;">watchers</mark> - func that tell Vue to execute, when **one of dependencies  changed**
+you can use watchers instead of computed props.
+
+`watch:{}` - it is an obj. You repeat `data()` or `computed:` props inside of `watch:`. And it will be executed, whenever the data/computed prop changes. Inside of copied prop we specify any logic
+```JS
+watch:{
+	name(value){
+		this.fullname + this.value + ' ' + 'Schwarzmüller';
+	}
+}
+```
+watch func gets the last val from data prop with the same name - so we don't have to refer to it. And just write `value`
+
+
+> [!NOTE]
+> better not to use it but use computed
+
+![[image.png]]
+# Lesson 35
+`v-on:click` shorthand -> `@click`
+`v-bind:value` shorthand -> `:value`
