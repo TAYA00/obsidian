@@ -2,7 +2,6 @@
 color: ""
 sticker: emoji//1f497
 ---
-![[chinigraphy-729Y5P6fmfg-unsplash.jpg]]
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
