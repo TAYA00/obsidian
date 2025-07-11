@@ -5,6 +5,7 @@ banner: chinigraphy-729Y5P6fmfg-unsplash.jpg
 banner_y: "0"
 aliases:
 ---
+
 ![[chinigraphy-729Y5P6fmfg-unsplash.jpg|30x20]]
 ### Script
 ```html
@@ -281,3 +282,58 @@ watch func gets the last val from data prop with the same name - so we don't hav
 # Lesson 35
 `v-on:click` shorthand -> `@click`
 `v-bind:value` shorthand -> `:value`
+
+# Lesson 36
+dynamic styling - change in Vue styles in reaction to smth
+
+Task: when clicking on div - it highlights
+- in `data()` we control which div is selected
+- in `methods:` - fire when div is clicked (write our logic)
+- `@click="boxSelected('letter that we assign to div')"` - to call our method on event listener click
+- to apply style for dynamic val - we use `:style=''`
+- in Vue we can write styles not like a normal CSS, but trough **the object**. Where you could also write the conditions, when does this style will apply
+
+> [!NOTE]
+    > This works ONLY with Vue
+```HTML
+<section id="styling">
+<div class="demo" :style="{borderColor: boxASelected ? 'red' : 'grey'}"  @click="boxSelected('A')"></div>
+<div class="demo" :style="{borderColor: boxBSelected ? 'purple' : 'grey'}" @click="boxSelected('B')"></div>
+<div class="demo" :style="{borderColor: boxCSelected ? 'pink' : 'grey'}" @click="boxSelected('C')"></div></section>
+```
+
+```JS
+const app = Vue.createApp({
+    data() {
+        return {
+            boxASelected: false,
+            boxBSelected: false,
+            boxCSelected: false,
+        };
+    },
+    methods: {
+        boxSelected(box) {
+            if (box === 'A'){
+                this.boxASelected = true;
+            }else if (box === 'B'){
+               this.boxBSelected = true;
+            }else if (box === 'C'){
+               this.boxCSelected = true;
+            }
+        },
+    }
+});
+app.mount('#styling');
+```
+
+# Lesson 37
+bins CSS clases dynamiccaly
+
+- create CSS class
+```CSS
+.active{
+  border-color: red;
+  background-color: salmon;
+}
+```
+- we assign dynamically class with `v-bind` if boxSelected = true
