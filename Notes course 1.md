@@ -336,4 +336,33 @@ bins CSS clases dynamiccaly
   background-color: salmon;
 }
 ```
-- we assign dynamically class with `v-bind` if boxSelected = true
+- we assign dynamically class with `v-bind:class`
+- pass an obj `class:"{}"` and add property `demo`
+	- name of that prop reflect on CSS class
+	- value of `demo` have a Boolean value that indicate  if the class should be added
+	```HTML
+	<div
+	:class="{demo: true, active: boxASelected}"
+	@click="boxSelected('A')"
+	></div>
+	```
+	that means "add class active(with assigned styles) when boxASelected is true"
+
+- to be able to unselect boxes we just add in our ` boxSelected(box)` method !
+```JS
+// instead of 
+if (box === 'A'){
+	this.boxASelected = true
+}
+// we write 
+if (box === 'A'){
+	this.boxASelected = !this.boxASelected
+}
+```
+
+> [!NOTE]
+    > watch vids 38 and 39 (34,34 in coursehunter) one more time
+
+![[image-1.png]]
+> [!NOTE]
+    > make the a Section 3,4,5,6
