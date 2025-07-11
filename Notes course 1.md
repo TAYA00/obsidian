@@ -1,10 +1,13 @@
 ---
 color: ""
 sticker: emoji//1f497
+banner: chinigraphy-729Y5P6fmfg-unsplash.jpg
+banner_y: "0"
+aliases:
 ---
-![[chinigraphy-729Y5P6fmfg-unsplash.jpg]]
+![[chinigraphy-729Y5P6fmfg-unsplash.jpg|30x20]]
 ```html
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js"></script>
 ```
 # Lesson 17+18
 - connect Vue to HTML
@@ -162,4 +165,50 @@ where event is a dynamic input ans lastname is a default val that we assign in H
 - `$event` is Vue's way of passing the **actual browser event object** to your method. **With extra parameters:** You must explicitly use `$event` to get the event object
 # Lesson 28
 - event modifiers
-- for example event like reloading the page after sending the form - to avoid it 
+- for example event like reloading the page after sending the form - to avoid `v-on:submit.prevent` `.prevent` is to remove browser default 
+
+# Lesson 30
+
+### Programm a reset button
+- add reset button for input 
+- add reset method and clear this input :
+	- we use the `data()` property `name=''` and output it in input stroke as `v-bind:value="name"`. 
+	- in resetInput() methods function and set `this.name = ''` - this value should be reflected in input
+	- in setName()  methods function we store entered name `this.name = event.target.value` so that be reflected in input
+	- connect button with event Listener `v-on:click="resetInput"`
+
+###  final code
+```html
+<input type="text"  v-bind:value="name" v-on:input="setName($event, 'Schwarzmüller')">
+<button v-on:click="resetInput">Reset Input</button>
+<p>Your Name: {{ name }}</p>
+```
+
+```js
+data() {
+	name: '' // початкове значення
+}
+
+methods(){
+	setName(event) {
+	  this.name = event.target.value; // зберігає введнні дані
+	},
+	resetInput() {
+      this.name = ''; // тобто повертає до початкового значення
+    }
+}
+```
+so you listening to input and sending stored value back
+
+### Shortcut
+`v-model=` - - (”direktive of two-way binding”) Synchronizes data with input fields
+
+it is a shortcut for `v-on:value` and `v-on:input`
+```HTML
+<input type="text" v-on:model="name">
+```
+
+# Lesson 31
+- output a full name 
+	- create `outputFullName()` methods funktion
+	- call it in `p` that show result of input `<p>Your Name: {{ outputFullName() }}</p>`
