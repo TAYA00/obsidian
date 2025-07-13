@@ -366,3 +366,9 @@ if (box === 'A'){
 ![[image-1.png]]
 > [!NOTE]
     > make the a Section 3,4,5,6
+
+# Lesson 41
+conditional content & Lists
+	- rendering content with conditons
+	- output list of data
+	- optimisation
