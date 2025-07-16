@@ -25,6 +25,16 @@ npm config set registry https://registry.npmjs.org/
 
 the first things you find in notion and in notes of your phone
 
+
+`Npm run build`  - this will me compiled in dist folder
+> [!IMPORTANT]
+    > Make a old version backup of previous program on your computer from Filezilla in website server
+
+Go to `index.html` in dist project folder and copy path from original index.html so it will be like in Fazilla 
+%% everything before /js… and /css…%% 
+
+Drag and drop all files from local git folder in Filezilla server and push „Überschreiben“
+
 Last notes
 afer you will write the whole algirithm
 
