@@ -278,7 +278,7 @@ watch func gets the last val from data prop with the same name - so we don't hav
 > [!NOTE]
 > better not to use it but use computed
 
-![[image.png]]
+![[image-2.png|250x163]]
 # Lesson 35
 `v-on:click` shorthand -> `@click`
 `v-bind:value` shorthand -> `:value`
@@ -363,7 +363,7 @@ if (box === 'A'){
 > [!NOTE]
     > watch vids 38 and 39 (34,34 in coursehunter) one more time
 
-![[image-1.png]]
+![[image.png]]
 > [!NOTE]
     > make the a Section 3,4,5,6
 
@@ -405,9 +405,25 @@ const app = Vue.createApp({
 - faster 
 
 `v-for` - **loop over data** (like an array or object) and **render elements repeatedly** (like for loop in JS)
+- you can pull item 
 ```HTML
 <li v-for="goal in goals">{{ goal }}</li>
 ```
 `goal` - one current item from the array of  (every new input value). You can name it however you want
 `in goals` - an array that stores all the user’s inputted goals. The list you are looping through
-`{{goal}}` - is an dynamic input value **
+`{{goal}}` - is an dynamic input value (should be named same as  a item in `v-for`)
+-  you can't use this loop item outside of loop
+
+- you can get index of item
+```HTML
+<li v-for="(goal, index) in goals">{{ goal }}</li>
+```
+`goal` - the value from the array
+`index` - the position (starting from 0)
+![[image-2.png|250x163]]
+
+- loop through objects
+```HTML
+<li v-for="(value, key) in user" :key="key">
+{{ key }}: {{ value }}</li>
+```
