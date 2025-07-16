@@ -369,6 +369,45 @@ if (box === 'A'){
 
 # Lesson 41
 conditional content & Lists
-	- rendering content with conditons
+	- rendering content with conditions
 	- output list of data
 	- optimisation
+# Lessons 42
+
+`v-if=""` - shows the element **only if** the condition is true.  (like if statement in JS)
+- you can point at computed property 
+- you can point at data property
+- execute a method
+
+inside `""` we write condition 
+- if the statement is true => program render HTML tag where you wrote `v-if`
+
+```HTML
+<p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+```
+
+```JS
+const app = Vue.createApp({
+  data() {
+    return { goals: [] }; // <- till goal is empty, it will show the message
+  },
+});
+```
+
+`v-else` - catches **everything else** if none of the previous conditions are true `v-if`
+`v-else-if` - Adds another condition **if the previous `v-if` is false**.
+- works only with an element after `v-if`
+
+
+`v-show` - works like an `v-if` **BUT**:
+- don't remove element from the DOM but just make it `display: none`
+- used when condition change frequently
+- faster 
+
+`v-for` - **loop over data** (like an array or object) and **render elements repeatedly** (like for loop in JS)
+```HTML
+<li v-for="goal in goals">{{ goal }}</li>
+```
+`goal` - one current item from the array of  (every new input value). You can name it however you want
+`in goals` - an array that stores all the user’s inputted goals. The list you are looping through
+`{{goal}}` - is an dynamic input value **
