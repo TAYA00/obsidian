@@ -40,7 +40,7 @@ afer you will write the whole algirithm
 
 npm install i18next-http-backend
 
-i18next.js  
+## i18next.js  
 import i18next from 'i18next'  
 import LanguageDetector from 'i18next-browser-languagedetector'  
 import HttpApi from 'i18next-http-backend'
@@ -61,10 +61,10 @@ i18next
 
 export default i18next
 
-main.js  
+## main.js  
 import './i18next'
 
-AmortisationCalculator.vue
+## AmortisationCalculator.vue
 
 in template so schrieben: >{{ t('request_offer') }}
 
@@ -127,3 +127,11 @@ data() {
     i18next.off('loaded');  
     i18next.off('languageChanged');  
   },v
+
+In AmortisationCalculator.vue
+first  
+ {{ translation.<mark style="background: #BBFABBA6;">one_time_project_costs</mark> }}
+last 
+{{ t("<mark style="background: #BBFABBA6;">one_time_project_costs</mark>") }}
+
+{{ t("one_time_project_costs") }}
