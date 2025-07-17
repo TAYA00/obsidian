@@ -38,7 +38,7 @@ Drag and drop all files from local git folder in Filezilla server and push „Ü
 Last notes
 afer you will write the whole algirithm
 
-npm install i18next-http-backend
+`npm install i18next-http-backend`
 
 ## i18next.js  
 import i18next from 'i18next'  
