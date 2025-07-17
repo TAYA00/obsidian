@@ -1,6 +1,7 @@
 ---
 sticker: emoji//270d-fe0f
 ---
+obsidian://show-plugin?id=ink
 # Header 1
 ## Header 2
 ### Header 3
