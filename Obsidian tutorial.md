@@ -65,21 +65,7 @@ external img
 with changable size
 
 
-```handwritten-ink
-{
-	"versionAtEmbed": "0.3.4",
-	"filepath": "Ink/Writing/2025.7.18 - 13.26pm.writing"
-}
-```
 
-```handdrawn-ink
-{
-	"versionAtEmbed": "0.3.4",
-	"filepath": "Ink/Drawing/2025.7.18 - 13.27pm.drawing",
-	"width": 500,
-	"aspectRatio": 1
-}
-```
 
 ```handdrawn-ink
 {
