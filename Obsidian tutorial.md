@@ -80,3 +80,19 @@ with changable size
 	"aspectRatio": 1
 }
 ```
+
+```handdrawn-ink
+{
+	"versionAtEmbed": "0.3.4",
+	"filepath": "Ink/Drawing/2025.7.18 - 13.31pm.drawing",
+	"width": 500,
+	"aspectRatio": 1
+}
+```
+
+```handwritten-ink
+{
+	"versionAtEmbed": "0.3.4",
+	"filepath": "Ink/Writing/2025.7.18 - 13.31pm.writing"
+}
+```
