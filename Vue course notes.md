@@ -454,8 +454,4 @@ Now Vue knows:
 - How to update the DOM correctly and efficiently
 ![[remote-rep/imgs/image-3.png]]
 # Lesson 51
-we can access `data()` **and also `methods()`** props through `thia.` keyword 
-
-```JS
-
-```
+we can access `data()` **and also `methods()`** props through `this.` keyword 
