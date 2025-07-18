@@ -367,12 +367,7 @@ if (box === 'A'){
 > [!NOTE]
     > make the a Section 3,4,5,6
 
-# Lesson 41
-conditional content & Lists
-	- rendering content with conditions
-	- output list of data
-	- optimisation
-# Lessons 42
+# Lessons 45/46
 
 `v-if=""` - shows the element **only if** the condition is true.  (like if statement in JS)
 - you can point at computed property 
@@ -404,6 +399,7 @@ const app = Vue.createApp({
 - used when condition change frequently
 - faster 
 
+# Lesson 48
 `v-for` - **loop over data** (like an array or object) and **render elements repeatedly** (like for loop in JS)
 - you can pull item 
 ```HTML
@@ -412,18 +408,54 @@ const app = Vue.createApp({
 `goal` - one current item from the array of  (every new input value). You can name it however you want
 `in goals` - an array that stores all the user’s inputted goals. The list you are looping through
 `{{goal}}` - is an dynamic input value (should be named same as  a item in `v-for`)
--  you can't use this loop item outside of loop
 
+- you can't use this loop item outside of loop
 - you can get index of item
 ```HTML
 <li v-for="(goal, index) in goals">{{ goal }}</li>
 ```
-`goal` - the value from the array
-`index` - the position (starting from 0)
-![[image-2.png|250x163]]
+	`goal` - the value from the array
+	`index` - the position (starting from 0)
 
+![[image-2.png|250x163]]
 - loop through objects
 ```HTML
 <li v-for="(value, key) in user" :key="key">
 {{ key }}: {{ value }}</li>
+```
+- loop numbers
+```HTML
+<li v-for="num in 10">{{ num }}</li>
+```
+
+# Lesson 50
+`@click.stop` - to stop the event from executing
+
+If you have parent element and child element with @click and don't wanna child event listener react on the same event
+```HTML
+<div @click="outerClicked">
+  <button @click.stop="innerClicked">Click Me</button>
+</div>
+```
+- The button click triggers `innerClicked`
+- But it **does NOT** bubble up to trigger `outerClicked`
+
+> [!NOTE]
+    > Better not to use it, because it's just a bug
+
+### Better use
+`:key` - special attribute  you add to elements in Vue to help Vue **track and manage DOM elements**
+```HTML
+<li v-for="item in items" :key="item.id">{{ item.name }}</li>
+```
+Now Vue knows:
+
+- Which element corresponds to which item
+- How to update the DOM correctly and efficiently
+![[remote-rep/imgs/image-3.png]]
+# Lesson 51
+we can access `data()` **and also `methods()`** props through `thia.` keyword 
+
+```JS
+
 ```
