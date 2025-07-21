@@ -5,10 +5,6 @@ sticker: lucide//calculator
 ```
 npm install
 ```
-if you wanna specify to program that this is the public version (in case of errors with i18 installation )
-```
-npm config set registry https://registry.npmjs.org/
-```
 when not working (because of newest version in VS Code)
 ```
 Remove-Item -Recurse -Force .\node_modules  
@@ -24,6 +20,10 @@ npm run serve
 ```
 
 
+if you wanna say programm that this is the public version
+```
+npm config set registry https://registry.npmjs.org/
+```
 
 
 the first things you find in notion and in notes of your phone
