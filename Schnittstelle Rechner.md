@@ -1,3 +1,6 @@
+---
+sticker: lucide//calculator
+---
 1. Install i18n
 ```
 npm install
