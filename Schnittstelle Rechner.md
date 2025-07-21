@@ -29,7 +29,7 @@ npm config set registry https://registry.npmjs.org/
 the first things you find in notion and in notes of your phone
 
 
-`Npm run build`  - this will me compiled in dist folder
+`npm run build`  - this will me compiled in dist folder
 > [!IMPORTANT]
     > Make a old version backup of previous program on your computer from Filezilla in website server
 
