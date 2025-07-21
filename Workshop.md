@@ -229,5 +229,53 @@ in main.css
 
 > [!NOTE]
     > https://sakai.primevue.org/documentation
-    > check the styles  for prime vue 
+    > check there the styles  for prime vue 
+
+
+
+### 4. Import components
+ in `configurator.vue` - we import script for component of our calculator (in App.vue we paste the template for this component that we need)
+
+new component products vue
+
+### 5. Zugriff zu Datenbank
+`npm i axios`
+in App.vue 
+`import axios from 'axios' `
+`data.const = axios.get("...")`
+
+
+ich muss von backend erauben dass daten from frontend geladen sind
+`npm i cors ` there is other install command for TS
+in index.ts `import cors from 'cors'` und `app.use(cors())`
+
+Entweder Bend und Fend in gleichen port oder 2 verschiedene serv entsntanzen
+
+in ProductVue 
+```js 
+<template>
+<label>{{data}}</label>
+</template>
+<script setup lang="ts">
+import axios from 'axios'
+import {onMounted, ref} from 'vue'
+
+const.data = ref("");
+
+onMounted (async () => {
+	try{
+		const.response = await,axios.get ('...');
+		data,value = response.state;
+	}catch{
+		console.error ('...', error);
+	}
+});
+</script>
+
+```
+###  Daten aus  dem Datenbank abzufragen
+download postman VS Code extension
+in backend/routes
+
+
 
