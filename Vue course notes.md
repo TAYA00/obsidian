@@ -455,3 +455,10 @@ Now Vue knows:
 ![[remote-rep/imgs/image-3.png]]
 # Lesson 51
 we can access `data()` **and also `methods()`** props through `this.` keyword 
+
+> [!NOTE]
+    > Watch lectures 63, 64,65,,66,68 later
+
+# Lecture 67
+
+`ref=` - non default HTML attribute. The value you assign  - any string identifier of my choice. You can add them not just on input el. but on any HTML el.
