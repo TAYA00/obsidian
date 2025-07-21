@@ -264,7 +264,7 @@ const.data = ref("");
 
 onMounted (async () => {
 	try{
-		const.response = await,axios.get ('...');
+		const.response = await,axios.get ('http:licalhost.3000/products');
 		data,value = response.state;
 	}catch{
 		console.error ('...', error);
@@ -275,7 +275,64 @@ onMounted (async () => {
 ```
 ###  Daten aus  dem Datenbank abzufragen
 download postman VS Code extension
-in backend/routes
+in backend/routes zuerst Product
+```TS 
+router.get (/products/, fetchallPpducts) // we have to call specific product
+```
 
 
+**we workimg with props**
+in App.vue - we take id from TS file ans place it in сіі
+```
+ProductView product-id ('...')
+```
+in ProductView.vue 
+```JS 
+<template>
+<label>{{data}}</label>
+</template>
+<script setup lang="ts">
+import axios from 'axios'
+import {onMounted, ref} from 'vue'
 
+const.data = ref("");
+const props = defineProps (['product.id']);
+
+onMounted (async () => {
+console.log(props)
+	try{
+		const.response = await,axios.get ('http:licalhost.3000/api/product$props['productId]');
+		data,value = response.state;
+	}catch{ 
+		console.error ('...', error);
+	}
+});
+```
+
+### editions und modules dazu laden
+in ProductView.vue 
+```JS 
+<template>
+<label>{{data}}</label>
+</template>
+<script setup lang="ts">
+import axios from 'axios'
+import {onMounted, ref} from 'vue'
+
+const.data = ref("");
+const props = defineProps (['product.id']);
+
+onMounted (async () => {
+console.log(props)
+	try{
+		const.response = await,axios.get ('http:licalhost.3000/api/product$props['productId]');
+		data,value = response.state;
+	}catch{
+		console.error ('...', error);
+	}
+});
+```
+
+css bauen
+
+mit input anfangen mit Matheus 
