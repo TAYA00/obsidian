@@ -175,14 +175,21 @@ in App.vue and delete template that we has
 
 ### 3. Tailwind CSS
 %%taiolwind css cheat sheat%%
+%% download extension tailwind css %%
 entweder ohne style oder in style mode verwenden oder Volt nutzen (von 0 styles aufbauen)
 
-styled mode - 
-unstyled mode - 
+styled mode - ?
+unstyled mode - ? 
 
 Tailwind 4 - nutzen wir
 
-`npm i tailwindcss`
+**We need 3 sets of Tailwind CSS**
+- tailwind css `npm i tailwindcss`
+- tailwind vite 
+- tailwind prime vue
+
+
+
 
 in assets/main.css  file we import tilewind 
 `@import ...`  %%in website there is a full code%%
@@ -192,7 +199,7 @@ in assets/main.css  file we import tilewind
 ```
 
 
-in the main.ts we put inside of initialisation the configuration. We have to put in the right order because it cascade
+in the` main.ts` we put inside of initialisation the configuration. We have to put in the right order because it cascade
 vue 
 
 
@@ -204,5 +211,23 @@ tailwind work as a bootstraop with through classes
 </template>
 ```
 
-in vue.config  we also inport tailwind and set plugins
-P
+
+in `vue.config`  we also inport tailwind and set plugins
+
+
+you can pack aal styles in other css file, thereore its more  well-organized
+
+in main.css
+```CSS 
+@layer components{
+	.sub-menu{
+		@apply (then you write styles)
+	}
+}
+```
+
+
+> [!NOTE]
+    > https://sakai.primevue.org/documentation
+    > check the styles  for prime vue 
+
