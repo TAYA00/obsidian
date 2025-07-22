@@ -342,6 +342,7 @@ mit input anfangen mit Matheus
 # 22.06
 plan für Diese Woche machen
 
+###  Installed packages
 you have to go direcrtly to file with your proj
 - in terminal 
 	`npm create vue@latest` 
@@ -349,12 +350,12 @@ you have to go direcrtly to file with your proj
 		- welche sprache benutzen: TS
 	`npm install`
 	`npm install primevue`
-	`npm install primeicon`
+	`npm install primeicons`
 	`npm install primeuix/themes` -?
-	`npm install tailwindcss @tailwindcss/vite`
-	`npm run dev` -  to check if the vite indstalled
-	`npm install vite --save-dev`  
-	install node
+	`npm install vite.js/plugin-vue`   
+	`npm install -D @tailwindcss/latest postcss@latest`
+	(make shure that node is installed )
+	`npm run dev` -  to check if the vite indstalled and 
 
 
 in main css`@import 'tailwindcss'` 
@@ -372,11 +373,10 @@ export default defineConfig({
 
 %% router -  route to another page %%
 
-
-### now we have a structure:
+### Project structure:
 - public
 - src - what we set for frontend 
-- assets - globally used files (main.css, base.css, svg)
+- assets - globally used files (main.css, base.css, svg) styles
 - components - we write components (elemente in proj [toast]). We use it to separate proj and dont write it in one big file
 - icons - Vue have own icons, so we dont have to put it manually in our proj. We can set only specific f.E logo
 	`npm install primeicons` - to install icons package
@@ -403,5 +403,12 @@ App.use (PrimeVue [])
 in App.vue we show the needed icon/component through
 
 
+style scoped in components -  styles for current component and only latest
 
- 
+App.vue -  take all component and call them 
+```VUE
+<template> </template>
+<script> we link our components </script>
+```
+
+### Adjust App.vue
