@@ -403,12 +403,23 @@ App.use (PrimeVue [])
 in App.vue we show the needed icon/component through
 
 
-style scoped in components -  styles for current component and only latest
+> [!NOTE]
+    > Contentstyle scoped in components -  styles for current component and only latest
 
 App.vue -  take all component and call them 
 ```VUE
+// structure of App.vue
 <template> </template>
 <script> we link our components </script>
 ```
 
+> [!NOTE]
+    > components in Vue - allow us to split the UI into independent and reusable pieces
+![[Pasted image 20250722125737.png]]
 ### Adjust App.vue
+
+### Componente 
+toast - for notifications
+card + select-button - for edition
+module %% soll flex %%
+carousel - for features die Module oder Editionabhöngig sind (incl)
