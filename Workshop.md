@@ -340,7 +340,8 @@ mit input anfangen mit Matheus
 
 
 # 22.06
-plan für Diese Woche machen
+> [!NOTE]
+    > https://roadmap.sh/vue
 
 you have to go direcrtly to file with your proj
 - in terminal 
