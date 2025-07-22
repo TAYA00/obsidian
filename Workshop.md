@@ -419,7 +419,88 @@ App.vue -  take all component and call them
 ### Adjust App.vue
 
 ### Componente 
-toast - for notifications
-card + select-button - for edition
-module %% soll flex %%
-carousel - for features die Module oder Editionabhöngig sind (incl)
+- toast - for notifications
+- card + select-button - for edition
+- buttons + - module %% soll flex %% 
+- carousel+ buttons - for features die Module oder Editionabhöngig sind (includes features will be shown static in the summary) 
+- card - overlay-panel - for dinamic price 
+- panel - for all extras that are included (we will show first 3 and then all other). Will be imported  as an array 
+- submitt button 
+### Connect Components
+
+in main.ts you register the component
+```TS
+import Button from 'primevue/button';
+```
+to use it 
+```TS
+const app = createApp(App)
+	app.component('Button', Button);
+app.mount('#app')
+```
+
+in App.vue
+```JS 
+<template>
+	<Button class="font-bold">Start</Button> 
+	// we set styles specifically for element with tailwind
+</template>
+```
+
+### Connect styles
+> [!NOTE]
+    > ContentSAKAI - styles that you can use for free
+design token -  key with the value 
+
+```JS 
+// in main.ts 
+import PrimeVue from ' primevue/config';
+import Aura from '@primevue/themes/aura';
+import './assets/main.css';
+
+import{ createApp }from 'vue'
+import App from './App.vue'
+
+import Button from 'primevue/button'
+
+const app = createApp(App);
+app.use(PrineVue,{
+	// Default theme configuration
+	theme: {
+		preset: Aura,
+			options:{
+				prefix: 'p'
+				darkModeSelector: "system',
+				cssLayer: false
+	}		}
+});
+```
+
+default styles -  we connect through vue. 
+specific styles -  we specidy through tailwind classes 
+
+test.vue 
+
+copy from App.vue and paste in in test.vue
+```JS 
+<template>   
+	<main>
+		<p>Hallo</p›  
+		<Button class="font-bold">Start</Button> 
+	</main>
+</template>  
+<script setup lang="ts">  
+</script>
+```
+
+```JS 
+// in App.vue
+<temaplate>
+<test/> // we link App.vue with test/
+</template> 
+<script>
+import test from './components/buttons/test.vue'
+</script>
+```
+
+
