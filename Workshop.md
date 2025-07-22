@@ -336,3 +336,40 @@ console.log(props)
 css bauen
 
 mit input anfangen mit Matheus 
+
+
+
+# 22.06
+- in terminal `npm create vue@latest` 
+- set proj name 
+- welche sprache benutzen: TS
+
+`npm install`
+
+### now we have a structure:
+- public
+- src - what we set for frontend 
+- assets - globally used files (main.css, base.css, svg)
+- components - we write components (elemente in proj [toast]). We use it to separate proj and dont write it in one big file
+- icons - Vue have own icons, so we dont have to put it manually in our proj. We can set only specific f.E logo
+	`npm install primeicons` - to install icons package
+
+all icons we import in main.ts 
+``` TS
+import 
+import 'primeicons/primeicons.css'
+```
+
+but for component in main.ts
+``` TS
+import inputNumber from '.../...'
+App.component ('InputNumber', InputNumber)
+createApp(app).mount('App')
+```
+for primevue general in main.ts
+```
+import 
+App.use (PrimeVue [])
+```
+
+in App.vue we show the needed icon/component through
