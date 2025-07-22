@@ -342,11 +342,36 @@ mit input anfangen mit Matheus
 # 22.06
 plan für Diese Woche machen
 
-- in terminal `npm create vue@latest` 
-- set proj name 
-- welche sprache benutzen: TS
+you have to go direcrtly to file with your proj
+- in terminal 
+	`npm create vue@latest` 
+		- set proj name 
+		- welche sprache benutzen: TS
+	`npm install`
+	`npm install primevue`
+	`npm install primeicon`
+	`npm install primeuix/themes` -?
+	`npm install tailwindcss @tailwindcss/vite`
+	`npm run dev` -  to check if the vite indstalled
+	`npm install vite --save-dev`  
+	install node
 
-`npm install`
+
+in main css`@import 'tailwindcss'` 
+
+in vite.config.ts 
+```TS
+import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
+export default defineConfig({ 
+	plugins: [ 
+		tailwindcss(), 
+	],
+})
+```
+
+%% router -  route to another page %%
+
 
 ### now we have a structure:
 - public
@@ -379,4 +404,4 @@ in App.vue we show the needed icon/component through
 
 
 
-Planenen 
+ 
