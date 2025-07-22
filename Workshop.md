@@ -340,6 +340,8 @@ mit input anfangen mit Matheus
 
 
 # 22.06
+plan für Diese Woche machen
+
 - in terminal `npm create vue@latest` 
 - set proj name 
 - welche sprache benutzen: TS
@@ -361,15 +363,20 @@ import 'primeicons/primeicons.css'
 ```
 
 but for component in main.ts
-``` TS
+``` TS 
 import inputNumber from '.../...'
 App.component ('InputNumber', InputNumber)
 createApp(app).mount('App')
 ```
 for primevue general in main.ts
-```
+``` TS 
 import 
 App.use (PrimeVue [])
 ```
 
+
 in App.vue we show the needed icon/component through
+
+
+
+Planenen 
