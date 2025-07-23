@@ -566,4 +566,40 @@ router get('/edition/', editoionRoutes)
 `interfaces.ts` -  write structure of database (for info)
 `services.ts` - call variables from Database
 
-in test.vue we 
+### dx
+in Edition.vue 
+```JS
+<script setup lang = "ts">
+import { getEdition } from '../../services/services'
+import type { Edition } from '../../services/interfaces'
+import Button from 'primevue/button'
+import { ref, onMounted } from 'vue'
+// Reaktive Liste für Editionen const editions = ref‹Edition []>([])
+const editions = ref<Edition[]>([])
+// Klassische Funktionsdefinition ohne const / =>
+async function loadEditions () {
+	try{
+		editions.value = await getEdition ( )
+		console. log( 'Editionen:', editions.value)
+	} catch (err) {
+		console.error ('Fehler beim Laden der Editionen:', err)
+	}
+function handleMounted(){
+	loadEdition()
+}
+onMounted(handleMounted)
+</script›
+
+<template>
+	<main>
+		<Button v-for="edition in editions" :key="edition.edition_id">
+			{{ edition.name }} <br> // call things from backend 
+			{{ edition.price }} <br>
+			{{ edition.included_module_count }}
+		</Button>
+	</main>
+‹/template>
+```
+we have to write 
+
+file to call all  for summary 
