@@ -466,6 +466,7 @@ import Button from 'primevue/button'
 const app = createApp(App);
 app.use(PrineVue,{
 	// Default theme configuration
+	unstyled: true, //  very important to apply theme 
 	theme: {
 		preset: Aura,
 			options:{
@@ -476,8 +477,11 @@ app.use(PrineVue,{
 });
 ```
 
+> [!NOTE]
+    > the `unstyled: true` option in PrimeVue is **necessary** when you're applying **custom themes** to disable pre-styled CSS
+
 default styles -  we connect through vue. 
-specific styles -  we specidy through tailwind classes 
+specific styles -  we specidy inside of  tailwind classes 
 
 test.vue 
 
@@ -503,4 +507,33 @@ import test from './components/buttons/test.vue'
 </script>
 ```
 
+### Set the edition component
 
+import card inside of main.ts 
+
+```TS
+import Card from 'primevue/card';
+```
+
+and link the component
+```TS
+app.component('Card', Card);
+```
+
+Editions.vue
+```JS
+<template>
+  <Button>
+    <Card>
+      <template #title>
+        <span>Click Me Card</span>
+      </template>
+      <template #content>
+        <p>This card looks like a card, but acts like a button.</p>
+      </template>
+    </Card>
+  </Button>
+</template>
+```
+
+we have to write flex styles my ourself
