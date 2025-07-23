@@ -567,31 +567,31 @@ router get('/edition/', editoionRoutes)
 `services.ts` - call variables from Database
 
 ### dx
-in Edition.vue 
+in Editions.vue 
 ```JS
 <script setup lang = "ts">
-import { getEdition } from '../../services/services'
+import { getEdition } from '../../services/services' // import backend service
 import type { Edition } from '../../services/interfaces'
 import Button from 'primevue/button'
 import { ref, onMounted } from 'vue'
-// Reaktive Liste für Editionen const editions = ref‹Edition []>([])
-const editions = ref<Edition[]>([])
-// Klassische Funktionsdefinition ohne const / =>
-async function loadEditions () {
+const editions = ref<Edition[]>([]) // create reactive list, so when data is loaded, the UI updates automatically
+
+async function loadEditions () { // defining a  Async Function to Load Data
 	try{
-		editions.value = await getEdition ( )
-		console. log( 'Editionen:', editions.value)
+		editions.value = await getEdition ( ) // calls get edition
+		console. log( 'Editionen:', editions.value) // store result in editions.value
 	} catch (err) {
 		console.error ('Fehler beim Laden der Editionen:', err)
 	}
-function handleMounted(){
-	loadEdition()
+function handleMounted(){ // lifecycle hook that runs when the component is first displayed
+	loadEdition() // to fetch the data from the backend immediately
 }
 onMounted(handleMounted)
 </script›
 
 <template>
 	<main>
+		// displays data in template. Loops through editions and display each edition obj
 		<Button v-for="edition in editions" :key="edition.edition_id">
 			{{ edition.name }} <br> // call things from backend 
 			{{ edition.price }} <br>
@@ -600,6 +600,13 @@ onMounted(handleMounted)
 	</main>
 ‹/template>
 ```
-we have to write 
 
+We create `Configurator.vue` file. That is the main file that we will use for Calculator UI and for all links to components. We don't use `App.vue` anymore
+
+    
+> Tasks:
 file to call all  for summary 
+make structure of website 
+make modules selectable (clickable) and build price card with logic
+
+
