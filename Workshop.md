@@ -449,7 +449,7 @@ in App.vue
 
 ### Connect styles
 > [!NOTE]
-    > ContentSAKAI - styles that you can use for free
+    > SAKAI - styles that you can use for free
 design token -  key with the value 
 
 ```JS 
@@ -537,3 +537,33 @@ Editions.vue
 ```
 
 we have to write flex styles my ourself
+
+### Connect to backend
+go to backend and `npm run div`
+see routes and search path in .get in index.ts watch the number  of server
+in index.ts 
+```TS
+// index.ts
+const app = express;
+const port = 3000;
+app. use(express. json));
+I
+app.get('/', function (_req, res) { 
+	res.send ('Bienvenue sur la calculatrice');
+});
+app use('/api', productRoutes); // part of url that we need 
+app.use('/api', editionRoutes);
+app.use('/api', moduleRoutes);
+```
+in editionRoutes there is rest of URL
+```TS
+router get('/edition/', editoionRoutes)
+```
+
+> [!NOTE]
+    > knex - postgress verbindung
+
+`interfaces.ts` -  write structure of database (for info)
+`services.ts` - call variables from Database
+
+in test.vue we 
