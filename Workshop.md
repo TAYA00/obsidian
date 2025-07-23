@@ -610,3 +610,4 @@ make structure of website
 make modules selectable (clickable) and build price card with logic
 
 
+emit - cancel, save. Emmited ein aktion
