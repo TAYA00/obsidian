@@ -663,6 +663,7 @@ const props = defineProps<{
   selectedEdition: Edition | null
 }>()
 ```
+### function only with alert and multi-select
 
 ```js
 function selectModule(module: Module): void {
@@ -690,6 +691,65 @@ function selectModule(module: Module): void {
   }
 }
 ```
+### function with alert abt edition,abt modules limit and  multi-select 
+```js
+// add limit of alerts.This is a reactive value that by default has value false
+const limitExceededShown = ref(false)
+// watch that reset .value = false
+watch(() => props.selectedEdition, () => {
+  limitExceededShown.value = false // allows you to show the toast again
+	// false - we show the toast
+	// true - don't show toast again
+})
+```
+
+```js
+function selectModule(module: Module): void {
+// ------------------------ part that styied
+  if (!props.selectedEdition) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Hinweis',
+      detail: 'Bitte wählen Sie zuerst eine Edition aus.',
+      life: 4000,
+    })
+    return
+  }
+  const exists = props.selectedModules.some((m) => m.module_id === module.module_id)
+// ------------------------ new
+// just put the if statement in variable that check if the module already selected
+  let updatedModules = exists
+    ? props.selectedModules.filter((m) => m.module_id !== module.module_id)
+    : [...props.selectedModules, module]
+
+  
+// pass the module count and inclusivity 
+  const limit = props.selectedEdition.included_module_count
+  const unlimited = props.selectedEdition.included_all_modules
+
+  
+/* if edition doesn't have unlimited modules 
+- AND selected modules count MORE THAN included module count 
+- AND the toast is not shown yet (if value of limitExceededShown is !true (which means false) */
+  if (!unlimited && updatedModules.length > limit && !limitExceededShown.value) {
+	// we pop the alert
+    toast.add({
+      severity: 'info',
+      summary: 'Zusätzliche Module',
+      detail: `Sie haben mehr als ${limit} Module gewählt. Weitere Module kosten je 2500 €.`,
+      life: 4000,
+    })
+    // set it to true - to not show it again
+    limitExceededShown.value = true
+  }
+  emit('select', updatedModules)
+}
+```
+> [!NOTE]
+    > `const баночка = ref("чай")`
+    > `console.log(баночка)`  // це баночка з етикеткою
+    > 	{ value: string } бо баночка це об'єкт
+    > `console.log(баночка.value)`   // це сам чай :)
 
 ```js
 function getButtonClass(module: Module): string[] {
