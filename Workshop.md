@@ -575,7 +575,6 @@ import type { Edition } from '../../services/interfaces'
 import Button from 'primevue/button'
 import { ref, onMounted } from 'vue'
 const editions = ref<Edition[]>([]) // create reactive list, so when data is loaded, the UI updates automatically
-
 async function loadEditions () { // defining a  Async Function to Load Data
 	try{
 		editions.value = await getEdition ( ) // calls get edition
@@ -611,3 +610,24 @@ make modules selectable (clickable) and build price card with logic
 
 
 emit - cancel, save. Emmited ein aktion
+
+# 24.06
+editionen:
+- verbindung with Frontend und Backend erstellt
+- dynamisch display von Edition 
+- Buttons benutzt: clickable, Anzahl von Module, Preis, 
+
+
+to-do:
+- start developing modules 
+	- connect to backend
+	- dinamically display modules from backend
+	
+- in Module.vue 
+	- name 
+	- nach positionsortieren 
+	- clickable
+
+
+
+
