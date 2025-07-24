@@ -630,11 +630,82 @@ to-do:
 
 # Anpassungen 24.07
 
-Configurator.vue
+###  Configurator.vue 
 ```vue
 // added Modules component
 <Modules :selectedModules="selectedModules" :selectedEdition="selectedEdition" @select="selectedModules = $event" />
 ```
 
-`v-vind: :selectedModules` -  передаємо масив Modules який знаходиться всередині props  у файлі `Modules.vue`
-передаємо v-vind: :selectedModules
+`v-vind: :selectedModules` -  pass the Modules array that is located inside the props in the file `Modules.vue`
+pass `v-vind :selectedEdition` - pass the editions that is located inside the props in the file `Modules.vue`
+
+``` js
+import type { Module } from './services/interfaces'
+// pass the array of modules through const, that we will use in Modules.vue
+const selectedModules = ref<Module[]>([])
+```
+
+### Modules.vue
+```js
+// import also editions to use it for Toast
+import type { Edition } from '../services/interfaces'
+```
+
+```js
+// declare var that passes Modules array
+const modules = ref<Module[]>([])
+```
+
+```js
+// in props we passed const that we declared in Configurator.vue
+const props = defineProps<{
+  selectedModules: Module[]
+  selectedEdition: Edition | null
+}>()
+```
+
+```js
+function selectModule(module: Module): void {
+  if (!props.selectedEdition) { // is selectedEdition is false
+    toast.add({
+      severity: 'warn',
+      summary: 'Hinweis',
+      detail: 'Bitte wählen Sie zuerst eine Edition aus.',
+      life: 3000,
+    })
+    return // exit this function (like break in java)
+  }
+  // check if selected module exists in selectedModules using some()
+  // m is a short name
+  const exists = props.selectedModules.some((m) => m.module_id === module.module_id) 
+  if (exists) { // if module already selected
+  // we delete module from array
+    const filtered = props.selectedModules.filter((m) => m.module_id !== module.module_id) 
+    // sends this updated array without module to the parent component via the `select` event
+    emit('select', filtered)
+  } else { // if module not selected
+  // we add new module to selected
+    emit('select', [...props.selectedModules, module])
+
+  }
+}
+```
+
+```js
+function getButtonClass(module: Module): string[] {
+// same thing check id modue exists in seectedMody=ules
+  const isSelected = props.selectedModules.some((m) => m.module_id === module.module_id)
+  return [ // this is not conditional
+    'w-full min-h-[5rem] rounded-lg font-semibold text-center flex items-center justify-center',
+
+    'transition-colors break-words text-wrap leading-snug',
+
+    'text-xs sm:text-sm md:text-base px-2 py-2',
+    isSelected 
+      ? 'bg-[#bcd000] text-[#082028]' // if module selected
+      : 'bg-[#082028] text-white hover:bg-[#bcd000] hover:text-[#082028]' // if not
+
+  ]
+
+}
+```
