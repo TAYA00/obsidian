@@ -568,24 +568,24 @@ router get('/edition/', editoionRoutes)
 
 ### dx
 in Editions.vue 
-```JS
+```vue
 <script setup lang = "ts">
-import { getEdition } from '../../services/services' // import backend service
-import type { Edition } from '../../services/interfaces'
-import Button from 'primevue/button'
-import { ref, onMounted } from 'vue'
-const editions = ref<Edition[]>([]) // create reactive list, so when data is loaded, the UI updates automatically
-async function loadEditions () { // defining a  Async Function to Load Data
-	try{
-		editions.value = await getEdition ( ) // calls get edition
-		console. log( 'Editionen:', editions.value) // store result in editions.value
-	} catch (err) {
-		console.error ('Fehler beim Laden der Editionen:', err)
+	import { getEdition } from '../../services/services' // import backend service
+	import type { Edition } from '../../services/interfaces'
+	import Button from 'primevue/button'
+	import { ref, onMounted } from 'vue'
+	const editions = ref<Edition[]>([]) // create reactive list, so when data is loaded, the UI updates automatically
+	async function loadEditions () { // defining a  Async Function to Load Data
+		try{
+			editions.value = await getEdition ( ) // calls get edition
+			console. log( 'Editionen:', editions.value) // store result in editions.value
+		} catch (err) {
+			console.error ('Fehler beim Laden der Editionen:', err)
+		}
+	function handleMounted(){ // lifecycle hook that runs when the component is first displayed
+		loadEdition() // to fetch the data from the backend immediately
 	}
-function handleMounted(){ // lifecycle hook that runs when the component is first displayed
-	loadEdition() // to fetch the data from the backend immediately
-}
-onMounted(handleMounted)
+	onMounted(handleMounted)
 </script›
 
 <template>
@@ -628,6 +628,13 @@ to-do:
 	- nach positionsortieren 
 	- clickable
 
+# Anpassungen 24.07
 
+Configurator.vue
+```vue
+// added Modules component
+<Modules :selectedModules="selectedModules" :selectedEdition="selectedEdition" @select="selectedModules = $event" />
+```
 
-
+`v-vind: :selectedModules` -  передаємо масив Modules який знаходиться всередині props  у файлі `Modules.vue`
+передаємо v-vind: :selectedModules
