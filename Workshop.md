@@ -769,3 +769,10 @@ function getButtonClass(module: Module): string[] {
 
 }
 ```
+
+über features 
+we have different groups 
+there is a module specific features
+
+each toggle for each features group
+show modulabhängig features only when module have chosen
