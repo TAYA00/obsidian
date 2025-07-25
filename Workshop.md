@@ -789,7 +789,6 @@ each toggle for each features group
 show modulabhängig features only when module have chosen
 
 ### to -do 25-07
-- when you switch between editions and you have already chosen more than limited amount - it has to show toast notification
 
 ###  Fragen in Beschprechung
 
@@ -800,3 +799,14 @@ show modulabhängig features only when module have chosen
 - getButtonClass - kann bleiben oder in CSS sollen wir entscheiden
 - numeric kommt in frontend auch als numeric. FormarPrice funktion löschen oder anpassen
 - do we need localisation with currency
+
+
+- [ ] edition beschreibung - mit i18next gemacht werden soll
+- [ ] tailwind problem 
+- [ ] when you switch between editions and you have already chosen more than limited amount - it has to show toast notification
+
+
+### CSS
+section-title - for h2 
+section-description - for description of editions and modules
+sectio
