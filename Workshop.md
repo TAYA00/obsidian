@@ -649,6 +649,9 @@ const selectedModules = ref<Module[]>([])
 ```js
 // import also editions to use it for Toast
 import type { Edition } from '../services/interfaces'
+// import Modules from interface and services 
+import type { Module } from '../services/interfaces'
+import { getModules } from '../services/services'
 ```
 
 ```js
@@ -661,6 +664,14 @@ const modules = ref<Module[]>([])
 const props = defineProps<{
   selectedModules: Module[]
   selectedEdition: Edition | null
+}>()
+```
+`emit` — це функція, яка дозволяє **дочірньому компоненту** надіслати подію в **батьківський компонент**. 
+Подія `'select'` приймає `Module[]` Kомпонент `<Modules>` не зберігає обране сам, а **передає його нагору**, в `Configurator.vue` - @select="selectedModules = $event" 
+
+```js
+const emit = defineEmits<{
+  (event: 'select', value: Module[]): void
 }>()
 ```
 ### function only with alert and multi-select
