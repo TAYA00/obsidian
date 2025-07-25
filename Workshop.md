@@ -787,3 +787,16 @@ there is a module specific features
 
 each toggle for each features group
 show modulabhängig features only when module have chosen
+
+### to -do 25-07
+- when you switch between editions and you have already chosen more than limited amount - it has to show toast notification
+
+###  Fragen in Beschprechung
+
+- v-else - muss bleiben
+- tailwind classe soll nicht direkt anwenden, sondern dürch `main.css`
+- sollen wir toast nutzen? - mit Daniel sprechen
+- Datensortierung muss in Datenbank sein
+- getButtonClass - kann bleiben oder in CSS sollen wir entscheiden
+- numeric kommt in frontend auch als numeric. FormarPrice funktion löschen oder anpassen
+- do we need localisation with currency
