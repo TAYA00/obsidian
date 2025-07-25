@@ -343,6 +343,7 @@ mit input anfangen mit Matheus
 > [!NOTE]
     > https://roadmap.sh/vue
 
+###  Installed packages
 you have to go direcrtly to file with your proj
 - in terminal 
 	`npm create vue@latest` 
@@ -350,12 +351,12 @@ you have to go direcrtly to file with your proj
 		- welche sprache benutzen: TS
 	`npm install`
 	`npm install primevue`
-	`npm install primeicon`
+	`npm install primeicons`
 	`npm install primeuix/themes` -?
-	`npm install tailwindcss @tailwindcss/vite`
-	`npm run dev` -  to check if the vite indstalled
-	`npm install vite --save-dev`  
-	install node
+	`npm install vite.js/plugin-vue`   
+	`npm install -D @tailwindcss/latest postcss@latest`
+	(make shure that node is installed )
+	`npm run dev` -  to check if the vite indstalled and 
 
 
 in main css`@import 'tailwindcss'` 
@@ -373,11 +374,10 @@ export default defineConfig({
 
 %% router -  route to another page %%
 
-
-### now we have a structure:
+### Project structure:
 - public
 - src - what we set for frontend 
-- assets - globally used files (main.css, base.css, svg)
+- assets - globally used files (main.css, base.css, svg) styles
 - components - we write components (elemente in proj [toast]). We use it to separate proj and dont write it in one big file
 - icons - Vue have own icons, so we dont have to put it manually in our proj. We can set only specific f.E logo
 	`npm install primeicons` - to install icons package
@@ -404,5 +404,410 @@ App.use (PrimeVue [])
 in App.vue we show the needed icon/component through
 
 
+> [!NOTE]
+    > Contentstyle scoped in components -  styles for current component and only latest
 
- 
+App.vue -  take all component and call them 
+```VUE
+// structure of App.vue
+<template> </template>
+<script> we link our components </script>
+```
+
+> [!NOTE]
+    > components in Vue - allow us to split the UI into independent and reusable pieces
+![[Pasted image 20250722125737.png]]
+### Adjust App.vue
+
+### Componente 
+- toast - for notifications
+- card + select-button - for edition
+- buttons + - module %% soll flex %% 
+- carousel+ buttons - for features die Module oder Editionabhöngig sind (includes features will be shown static in the summary) 
+- card - overlay-panel - for dinamic price 
+- panel - for all extras that are included (we will show first 3 and then all other). Will be imported  as an array 
+- submitt button 
+### Connect Components
+
+in main.ts you register the component
+```TS
+import Button from 'primevue/button';
+```
+to use it 
+```TS
+const app = createApp(App)
+	app.component('Button', Button);
+app.mount('#app')
+```
+
+in App.vue
+```JS 
+<template>
+	<Button class="font-bold">Start</Button> 
+	// we set styles specifically for element with tailwind
+</template>
+```
+
+### Connect styles
+> [!NOTE]
+    > SAKAI - styles that you can use for free
+design token -  key with the value 
+
+```JS 
+// in main.ts 
+import PrimeVue from ' primevue/config';
+import Aura from '@primevue/themes/aura';
+import './assets/main.css';
+
+import{ createApp }from 'vue'
+import App from './App.vue'
+
+import Button from 'primevue/button'
+
+const app = createApp(App);
+app.use(PrineVue,{
+	// Default theme configuration
+	unstyled: true, //  very important to apply theme 
+	theme: {
+		preset: Aura,
+			options:{
+				prefix: 'p'
+				darkModeSelector: "system',
+				cssLayer: false
+	}		}
+});
+```
+
+> [!NOTE]
+    > the `unstyled: true` option in PrimeVue is **necessary** when you're applying **custom themes** to disable pre-styled CSS
+
+default styles -  we connect through vue. 
+specific styles -  we specidy inside of  tailwind classes 
+
+test.vue 
+
+copy from App.vue and paste in in test.vue
+```JS 
+<template>   
+	<main>
+		<p>Hallo</p›  
+		<Button class="font-bold">Start</Button> 
+	</main>
+</template>  
+<script setup lang="ts">  
+</script>
+```
+
+```JS 
+// in App.vue
+<temaplate>
+<test/> // we link App.vue with test/
+</template> 
+<script>
+import test from './components/buttons/test.vue'
+</script>
+```
+
+### Set the edition component
+
+import card inside of main.ts 
+
+```TS
+import Card from 'primevue/card';
+```
+
+and link the component
+```TS
+app.component('Card', Card);
+```
+
+Editions.vue
+```JS
+<template>
+  <Button>
+    <Card>
+      <template #title>
+        <span>Click Me Card</span>
+      </template>
+      <template #content>
+        <p>This card looks like a card, but acts like a button.</p>
+      </template>
+    </Card>
+  </Button>
+</template>
+```
+
+we have to write flex styles my ourself
+
+### Connect to backend
+go to backend and `npm run div`
+see routes and search path in .get in index.ts watch the number  of server
+in index.ts 
+```TS
+// index.ts
+const app = express;
+const port = 3000;
+app. use(express. json));
+I
+app.get('/', function (_req, res) { 
+	res.send ('Bienvenue sur la calculatrice');
+});
+app use('/api', productRoutes); // part of url that we need 
+app.use('/api', editionRoutes);
+app.use('/api', moduleRoutes);
+```
+in editionRoutes there is rest of URL
+```TS
+router get('/edition/', editoionRoutes)
+```
+
+> [!NOTE]
+    > knex - postgress verbindung
+
+`interfaces.ts` -  write structure of database (for info)
+`services.ts` - call variables from Database
+
+### dx
+in Editions.vue 
+```vue
+<script setup lang = "ts">
+	import { getEdition } from '../../services/services' // import backend service
+	import type { Edition } from '../../services/interfaces'
+	import Button from 'primevue/button'
+	import { ref, onMounted } from 'vue'
+	const editions = ref<Edition[]>([]) // create reactive list, so when data is loaded, the UI updates automatically
+	async function loadEditions () { // defining a  Async Function to Load Data
+		try{
+			editions.value = await getEdition ( ) // calls get edition
+			console. log( 'Editionen:', editions.value) // store result in editions.value
+		} catch (err) {
+			console.error ('Fehler beim Laden der Editionen:', err)
+		}
+	function handleMounted(){ // lifecycle hook that runs when the component is first displayed
+		loadEdition() // to fetch the data from the backend immediately
+	}
+	onMounted(handleMounted)
+</script›
+
+<template>
+	<main>
+		// displays data in template. Loops through editions and display each edition obj
+		<Button v-for="edition in editions" :key="edition.edition_id">
+			{{ edition.name }} <br> // call things from backend 
+			{{ edition.price }} <br>
+			{{ edition.included_module_count }}
+		</Button>
+	</main>
+‹/template>
+```
+
+We create `Configurator.vue` file. That is the main file that we will use for Calculator UI and for all links to components. We don't use `App.vue` anymore
+
+    
+> Tasks:
+file to call all  for summary 
+make structure of website 
+make modules selectable (clickable) and build price card with logic
+
+
+emit - cancel, save. Emmited ein aktion
+
+# 24.06
+editionen:
+- verbindung with Frontend und Backend erstellt
+- dynamisch display von Edition 
+- Buttons benutzt: clickable, Anzahl von Module, Preis, 
+
+
+to-do:
+- start developing modules 
+	- connect to backend
+	- dinamically display modules from backend
+	
+- in Module.vue 
+	- name 
+	- nach positionsortieren 
+	- clickable
+
+# Anpassungen 24.07
+
+###  Configurator.vue 
+```vue
+// added Modules component
+<Modules :selectedModules="selectedModules" :selectedEdition="selectedEdition" @select="selectedModules = $event" />
+```
+
+`v-vind: :selectedModules` -  pass the Modules array that is located inside the props in the file `Modules.vue`
+pass `v-vind :selectedEdition` - pass the editions that is located inside the props in the file `Modules.vue`
+
+``` js
+import type { Module } from './services/interfaces'
+// pass the array of modules through const, that we will use in Modules.vue
+const selectedModules = ref<Module[]>([])
+```
+
+### Modules.vue
+```js
+// import also editions to use it for Toast
+import type { Edition } from '../services/interfaces'
+// import Modules from interface and services 
+import type { Module } from '../services/interfaces'
+import { getModules } from '../services/services'
+```
+
+```js
+// declare var that passes Modules array
+const modules = ref<Module[]>([])
+```
+
+```js
+// in props we passed const that we declared in Configurator.vue
+const props = defineProps<{
+  selectedModules: Module[]
+  selectedEdition: Edition | null
+}>()
+```
+`emit` — це функція, яка дозволяє **дочірньому компоненту** надіслати подію в **батьківський компонент**. 
+Подія `'select'` приймає `Module[]` Kомпонент `<Modules>` не зберігає обране сам, а **передає його нагору**, в `Configurator.vue` - @select="selectedModules = $event" 
+
+```js
+const emit = defineEmits<{
+  (event: 'select', value: Module[]): void
+}>()
+```
+### function only with alert and multi-select
+
+```js
+function selectModule(module: Module): void {
+  if (!props.selectedEdition) { // is selectedEdition is false
+    toast.add({
+      severity: 'warn',
+      summary: 'Hinweis',
+      detail: 'Bitte wählen Sie zuerst eine Edition aus.',
+      life: 3000,
+    })
+    return // exit this function (like break in java)
+  }
+  // check if selected module exists in selectedModules using some()
+  // m is a short name
+  const exists = props.selectedModules.some((m) => m.module_id === module.module_id) 
+  if (exists) { // if module already selected
+  // we delete module from array
+    const filtered = props.selectedModules.filter((m) => m.module_id !== module.module_id) 
+    // sends this updated array without module to the parent component via the `select` event
+    emit('select', filtered)
+  } else { // if module not selected
+  // we add new module to selected
+    emit('select', [...props.selectedModules, module])
+
+  }
+}
+```
+### function with alert abt edition,abt modules limit and  multi-select 
+```js
+// add limit of alerts.This is a reactive value that by default has value false
+const limitExceededShown = ref(false)
+// watch that reset .value = false
+watch(() => props.selectedEdition, () => {
+  limitExceededShown.value = false // allows you to show the toast again
+	// false - we show the toast
+	// true - don't show toast again
+})
+```
+
+```js
+function selectModule(module: Module): void {
+// ------------------------ part that styied
+  if (!props.selectedEdition) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Hinweis',
+      detail: 'Bitte wählen Sie zuerst eine Edition aus.',
+      life: 4000,
+    })
+    return
+  }
+  const exists = props.selectedModules.some((m) => m.module_id === module.module_id)
+// ------------------------ new
+// just put the if statement in variable that check if the module already selected
+  let updatedModules = exists
+    ? props.selectedModules.filter((m) => m.module_id !== module.module_id)
+    : [...props.selectedModules, module]
+
+  
+// pass the module count and inclusivity 
+  const limit = props.selectedEdition.included_module_count
+  const unlimited = props.selectedEdition.included_all_modules
+
+  
+/* if edition doesn't have unlimited modules 
+- AND selected modules count MORE THAN included module count 
+- AND the toast is not shown yet (if value of limitExceededShown is !true (which means false) */
+  if (!unlimited && updatedModules.length > limit && !limitExceededShown.value) {
+	// we pop the alert
+    toast.add({
+      severity: 'info',
+      summary: 'Zusätzliche Module',
+      detail: `Sie haben mehr als ${limit} Module gewählt. Weitere Module kosten je 2500 €.`,
+      life: 4000,
+    })
+    // set it to true - to not show it again
+    limitExceededShown.value = true
+  }
+  emit('select', updatedModules)
+}
+```
+> [!NOTE]
+    > `const баночка = ref("чай")`
+    > `console.log(баночка)`  // це баночка з етикеткою
+    > 	{ value: string } бо баночка це об'єкт
+    > `console.log(баночка.value)`   // це сам чай :)
+
+```js
+function getButtonClass(module: Module): string[] {
+// same thing check id modue exists in seectedMody=ules
+  const isSelected = props.selectedModules.some((m) => m.module_id === module.module_id)
+  return [ // this is not conditional
+    'w-full min-h-[5rem] rounded-lg font-semibold text-center flex items-center justify-center',
+
+    'transition-colors break-words text-wrap leading-snug',
+
+    'text-xs sm:text-sm md:text-base px-2 py-2',
+    isSelected 
+      ? 'bg-[#bcd000] text-[#082028]' // if module selected
+      : 'bg-[#082028] text-white hover:bg-[#bcd000] hover:text-[#082028]' // if not
+
+  ]
+
+}
+```
+
+über features 
+we have different groups 
+there is a module specific features
+
+each toggle for each features group
+show modulabhängig features only when module have chosen
+
+### to -do 25-07
+
+###  Fragen in Beschprechung
+
+- v-else - muss bleiben
+- tailwind classe soll nicht direkt anwenden, sondern dürch `main.css`
+- sollen wir toast nutzen? - mit Daniel sprechen
+- Datensortierung muss in Datenbank sein
+- getButtonClass - kann bleiben oder in CSS sollen wir entscheiden
+- numeric kommt in frontend auch als numeric. FormarPrice funktion löschen oder anpassen
+- do we need localisation with currency
+
+
+- [ ] edition beschreibung - mit i18next gemacht werden soll
+- [x] tailwind problem 
+- [ ] when you switch between editions and you have already chosen more than limited amount - it has to show toast notification
+
+
+### CSS
+section-title - for h2 
+section-description - for description of editions and modules
+sectio
