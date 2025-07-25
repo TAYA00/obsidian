@@ -802,7 +802,7 @@ show modulabhängig features only when module have chosen
 
 
 - [ ] edition beschreibung - mit i18next gemacht werden soll
-- [ ] tailwind problem 
+- [x] tailwind problem 
 - [ ] when you switch between editions and you have already chosen more than limited amount - it has to show toast notification
 
 
