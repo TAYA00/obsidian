@@ -65,6 +65,3 @@ external img
 with changable size
 
 
-
-
-
